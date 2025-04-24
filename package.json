@@ -1,0 +1,26 @@
+{
+  "name": "block_37a",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/HeatherD2025/block_37A.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/HeatherD2025/block_37A/issues"
+  },
+  "homepage": "https://github.com/HeatherD2025/block_37A#readme",
+  "description": "",
+  "devDependencies": {
+    "@types/node": "^22.15.0",
+    "prisma": "^6.6.0",
+    "tsx": "^4.19.3",
+    "typescript": "^5.8.3"
+  }
+}
