@@ -1,51 +1,90 @@
-const { bcrypt, prisma, jwt } = require("../common/common");
+const { router, bcrypt, prisma, jwt } = require("../common/common");
+require("dotenv").config();
 
+// const login = async (req, res) => {
+//   const { username, password } = req.body;
+//   const user = await prisma.user.findFirst({
+//     where: {
+//       username,
+//     },
+//   });
+//   const match = await bcrypt.compare(password, user?.password);
+//   if (match) {
+//     const token = jwt.sign(
+//       user.id,
+//       process.env.WEB_TOKEN,
+//     );
+//     const obj = {
+//       user,
+//       token,
+//     };
+//     res.send(obj);
+//   } else {
+//     res.send("Something didn't work");
+//   }
+// };
 const login = async (req, res) => {
-  const { email, password } = req.body;
-  const user = await prisma.user.findFirst({
-    where: {
-      email,
-    },
-  });
-  const match = await bcrypt.compare(password, user?.password);
-  if (match) {
+  const { username, password } = req.body;
+  
+  try {
+    const user = await prisma.user.findFirst({
+      where: { username },
+    });
+
+    if (!user) {
+      return res.status(404).json({ 
+        statusCode: 404, 
+        message: "User not found" 
+      });
+    }
+
+    const isPasswordValid = await bcrypt.compare(password, user.password);
+
+    if (!isPasswordValid) {
+      return res.status(401).json({ 
+        statusCode: 401, 
+        message: "Login denied" 
+      });
+    }
+
     const token = jwt.sign(
-      {
-        email,
-      },
+      { id: user.id, username: user.username },
       process.env.WEB_TOKEN,
-      { expiresIn: "1h" }
     );
-    const obj = {
-      user,
-      token,
-    };
-    res.send(obj);
-  } else {
-    res.send("Something didn't work");
+
+    // Remove password from response
+    const { password: _, ...userWithoutPassword } = user;
+
+    res.status(200).json({
+      user: userWithoutPassword,
+      token
+    });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ 
+      statusCode: 500, 
+      message: "Server error" 
+    });
   }
 };
 
 const register = async (req, res) => {
-  const { email, password } = req.body;
+  const { username, password } = req.body;
   const salt = await bcrypt.genSalt(10);
   const hashedPassword = await bcrypt.hash(password, salt);
   const registerUser = await prisma.user.create({
     data: {
-      email,
+      username,
       password: hashedPassword,
     },
   });
   if (registerUser) {
     const token = jwt.sign(
-      {
-        email,
-      },
+      registerUser.id,
       process.env.WEB_TOKEN,
-      { expiresIn: "1h" }
     );
     const obj = {
-      user,
+      registerUser,
       token,
     };
     res.json(obj);
@@ -63,46 +102,6 @@ const userGet = async (req, res) => {
   });
   res.send(user);
 };
-
-// const user = async (req, res) => {
-//   const id = Number(req.params.id);
-//   const { email, password } = req.body;
-//   const salt = await bcrypt.genSalt(10);
-//   const hashedPassword = await bcrypt.hash(password, salt);
-//   const user = await prisma.user.findFirst({
-//     where: {
-//       id,
-//     },
-//   });
-//   try {
-//     if (user) {
-//       const updateUser = await prisma.user.update({
-//         where: {
-//           id,
-//         },
-//         data: {
-//           email,
-//           password: hashedPassword,
-//         },
-//       });
-//       if (updateUser) {
-//         res.send(updateUser);
-//         return;
-//       } else {
-//         res.send("User did not update");
-//         return;
-//       }
-//     } else {
-//       res.send("User not found");
-//       return;
-//     }
-//   } catch (e) {
-//     res.send(e);
-//     return;
-//   }
-
-//   res.send(user);
-// };
 
 module.exports = {
   login,

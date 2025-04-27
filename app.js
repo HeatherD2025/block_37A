@@ -6,11 +6,9 @@ app.use(express.json());
 const cors = require("cors");
 app.use(cors());
 
-const authRoutes = require("./src/routes/authRoutes");
+const authRoutes = require("./src/routes/auth");
 // Backend routes
 app.use("/auth", authRoutes);
-app.use("/api", require("./src/api"));
-// app.use('/api', require('./api'));
 
 // Serves the HTML file that Vite builds
 app.get("/", (req, res) => {
