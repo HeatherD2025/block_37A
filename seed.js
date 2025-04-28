@@ -1,4 +1,4 @@
-const { prisma } = require("./common");
+const { prisma } = require("./common/common");
 
 async function seed() {
   try {
