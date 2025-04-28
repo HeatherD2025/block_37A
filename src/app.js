@@ -6,11 +6,13 @@ app.use(express.json());
 const cors = require("cors");
 app.use(cors());
 
-const authRoutes = require("./src/routes/authRoutes");
+const authRoutes = require("./src/routes/auth");
 // Backend routes
 app.use("/auth", authRoutes);
-app.use("/api", require("./src/api"));
-// app.use('/api', require('./api'));
+
+const itemRoutes = require("./src/routes/items");
+// Backend routes
+app.use("/items", itemRoutes);
 
 // Serves the HTML file that Vite builds
 app.get("/", (req, res) => {
@@ -28,4 +30,7 @@ app.use((req, res) => {
   res.status(404).send("Not found.");
 });
 
-module.exports = app;
+module.exports = 
+app, 
+authRoutes,
+itemRoutes
