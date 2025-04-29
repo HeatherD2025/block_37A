@@ -25,31 +25,31 @@ require("dotenv").config();
 // };
 const login = async (req, res) => {
   const { username, password } = req.body;
-  
+
   try {
     const user = await prisma.user.findFirst({
       where: { username },
     });
 
     if (!user) {
-      return res.status(404).json({ 
-        statusCode: 404, 
-        message: "User not found" 
+      return res.status(404).json({
+        statusCode: 404,
+        message: "User not found",
       });
     }
 
     const isPasswordValid = await bcrypt.compare(password, user.password);
 
     if (!isPasswordValid) {
-      return res.status(401).json({ 
-        statusCode: 401, 
-        message: "Login denied" 
+      return res.status(401).json({
+        statusCode: 401,
+        message: "Login denied",
       });
     }
 
     const token = jwt.sign(
       { id: user.id, username: user.username },
-      process.env.WEB_TOKEN,
+      process.env.WEB_TOKEN
     );
 
     // Remove password from response
@@ -57,13 +57,13 @@ const login = async (req, res) => {
 
     res.status(200).json({
       user: userWithoutPassword,
-      token
+      token,
     });
   } catch (error) {
     console.error(error);
-    res.status(500).json({ 
-      statusCode: 500, 
-      message: "Server error" 
+    res.status(500).json({
+      statusCode: 500,
+      message: "Server error",
     });
   }
 };
@@ -79,10 +79,7 @@ const register = async (req, res) => {
     },
   });
   if (registerUser) {
-    const token = jwt.sign(
-      registerUser.id,
-      process.env.WEB_TOKEN,
-    );
+    const token = jwt.sign(registerUser.id, process.env.WEB_TOKEN);
     const obj = {
       registerUser,
       token,
