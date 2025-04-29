@@ -6,9 +6,19 @@ app.use(express.json());
 const cors = require("cors");
 app.use(cors());
 
+// Middleware to serve static files from the client/dist director
 const authRoutes = require("./src/routes/auth");
+console.log("authRoutes loaded");
 // Backend routes
-app.use("/auth", authRoutes);
+app.use("/api/auth", authRoutes);
+
+const itemRoutes = require("./src/routes/items");
+// Backend routes
+app.use("/api/items", itemRoutes); 
+
+const commentRoutes = require("./src/routes/comments");
+// Backend routes
+app.use("/api", commentRoutes); 
 
 // Serves the HTML file that Vite builds
 app.get("/", (req, res) => {
@@ -27,3 +37,5 @@ app.use((req, res) => {
 });
 
 module.exports = app;
+// authRoutes,
+// itemRoutes
