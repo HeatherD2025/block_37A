@@ -134,7 +134,6 @@ exports.Prisma.ItemScalarFieldEnum = {
 exports.Prisma.ReviewScalarFieldEnum = {
   id: 'id',
   rating: 'rating',
-  text: 'text',
   userId: 'userId',
   itemId: 'itemId'
 };
@@ -153,11 +152,6 @@ exports.Prisma.SortOrder = {
 exports.Prisma.QueryMode = {
   default: 'default',
   insensitive: 'insensitive'
-};
-
-exports.Prisma.NullsOrder = {
-  first: 'first',
-  last: 'last'
 };
 
 

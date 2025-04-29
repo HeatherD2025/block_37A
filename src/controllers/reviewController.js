@@ -32,7 +32,7 @@ const getSandwichReview = async (req, res) => {
 // Post (create) a new sandwich review
 const createSandwichReview = async (req, res) => {
   const { itemId } = req.params;
-  const { rating, text, userId } = req.body;
+  const { rating, text } = req.body;
   try {
     const token = req.headers.authorization?.replace("Bearer ", "");
     if (!token)
@@ -46,9 +46,10 @@ const createSandwichReview = async (req, res) => {
     });
     console.log("Item found:", item);
 
-    if (authenticateUserId !== userId) {
-      return res.status(403).json({ message: "You shall not pass" });
-    }
+    // if (authenticateUserId !== userId) {
+    //   return res.status(403).json({ message: "You shall not pass" });
+    // }
+
     const existingReview = await prisma.review.findFirst({
       where: { userId: authenticateUserId, itemId: itemId },
     });
@@ -63,14 +64,19 @@ const createSandwichReview = async (req, res) => {
     const newReview = await prisma.review.create({
       data: {
         rating,
-        text,
         userId: authenticateUserId,
         itemId,
+        comments: {
+          create: [{ text }],
+        },
+        include: {
+          comments: true,
+        },
       },
     });
 
     //average prisma method
-    const averageRating = await prisma.review.aggregate({
+    const averageResult = await prisma.review.aggregate({
       where: {
         itemId: itemId,
       },
@@ -79,7 +85,10 @@ const createSandwichReview = async (req, res) => {
       },
     });
 
-    res.status(201).json(newReview, averageRating);
+    const averageRating =
+      Math.round((averageResult._avg.rating || 0) * 10) / 10;
+
+    return res.status(201).json({ newReview, averageRating });
   } catch (error) {
     console.error("Error creating review:", error);
     res.status(500).json({ message: "Server error while creating review." });
@@ -144,12 +153,31 @@ const updateSandwichReview = async (req, res, next) => {
       where: { id: reviewId },
       data: {
         rating,
-        comments: {
-          create: [{ text: comments }],
-        },
+        comments: comments
+          ? {
+              create: [{ text: comments }],
+            }
+          : undefined,
+      },
+      include: {
+        comments: true,
       },
     });
-    res.status(200).json(updatedReview);
+
+    //average prisma method
+    const averageResult = await prisma.review.aggregate({
+      where: {
+        itemId: review.itemId,
+      },
+      _avg: {
+        rating: true,
+      },
+    });
+
+    const averageRating =
+      Math.round((averageResult._avg.rating || 0) * 10) / 10;
+
+    res.status(200).json({ updatedReview, averageRating });
   } catch (error) {
     console.error("Error updating review", error);
     res.status(500).json({ message: "Server error fetching your reviews" });
