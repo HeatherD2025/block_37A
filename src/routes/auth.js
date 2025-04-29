@@ -12,6 +12,7 @@ function middleware(req, res, next) {
   }
 }
 
+
 router.post("/login", login);
 router.post("/register", register);
 router.get("/me", middleware, getMe);

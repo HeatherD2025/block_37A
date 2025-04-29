@@ -1143,12 +1143,18 @@ export namespace Prisma {
 
   export type UserCountOutputType = {
     reviews: number
+<<<<<<< HEAD
     comments: number
+=======
+>>>>>>> 7ccb7c060030306b0811825e343bb22cb4f0491b
   }
 
   export type UserCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     reviews?: boolean | UserCountOutputTypeCountReviewsArgs
+<<<<<<< HEAD
     comments?: boolean | UserCountOutputTypeCountCommentsArgs
+=======
+>>>>>>> 7ccb7c060030306b0811825e343bb22cb4f0491b
   }
 
   // Custom InputTypes
@@ -1169,6 +1175,7 @@ export namespace Prisma {
     where?: ReviewWhereInput
   }
 
+<<<<<<< HEAD
   /**
    * UserCountOutputType without action
    */
@@ -1176,6 +1183,8 @@ export namespace Prisma {
     where?: CommentWhereInput
   }
 
+=======
+>>>>>>> 7ccb7c060030306b0811825e343bb22cb4f0491b
 
   /**
    * Count Type ItemCountOutputType
@@ -1392,7 +1401,10 @@ export namespace Prisma {
     username?: boolean
     password?: boolean
     reviews?: boolean | User$reviewsArgs<ExtArgs>
+<<<<<<< HEAD
     comments?: boolean | User$commentsArgs<ExtArgs>
+=======
+>>>>>>> 7ccb7c060030306b0811825e343bb22cb4f0491b
     _count?: boolean | UserCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["user"]>
 
@@ -1417,7 +1429,10 @@ export namespace Prisma {
   export type UserOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "username" | "password", ExtArgs["result"]["user"]>
   export type UserInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     reviews?: boolean | User$reviewsArgs<ExtArgs>
+<<<<<<< HEAD
     comments?: boolean | User$commentsArgs<ExtArgs>
+=======
+>>>>>>> 7ccb7c060030306b0811825e343bb22cb4f0491b
     _count?: boolean | UserCountOutputTypeDefaultArgs<ExtArgs>
   }
   export type UserIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
@@ -1427,7 +1442,10 @@ export namespace Prisma {
     name: "User"
     objects: {
       reviews: Prisma.$ReviewPayload<ExtArgs>[]
+<<<<<<< HEAD
       comments: Prisma.$CommentPayload<ExtArgs>[]
+=======
+>>>>>>> 7ccb7c060030306b0811825e343bb22cb4f0491b
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
@@ -1828,7 +1846,10 @@ export namespace Prisma {
   export interface Prisma__UserClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
     reviews<T extends User$reviewsArgs<ExtArgs> = {}>(args?: Subset<T, User$reviewsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ReviewPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+<<<<<<< HEAD
     comments<T extends User$commentsArgs<ExtArgs> = {}>(args?: Subset<T, User$commentsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$CommentPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+=======
+>>>>>>> 7ccb7c060030306b0811825e343bb22cb4f0491b
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -2273,6 +2294,7 @@ export namespace Prisma {
   }
 
   /**
+<<<<<<< HEAD
    * User.comments
    */
   export type User$commentsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -2297,6 +2319,8 @@ export namespace Prisma {
   }
 
   /**
+=======
+>>>>>>> 7ccb7c060030306b0811825e343bb22cb4f0491b
    * User without action
    */
   export type UserDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -4476,21 +4500,30 @@ export namespace Prisma {
   export type CommentMinAggregateOutputType = {
     id: string | null
     text: string | null
+<<<<<<< HEAD
     userId: string | null
+=======
+>>>>>>> 7ccb7c060030306b0811825e343bb22cb4f0491b
     reviewId: string | null
   }
 
   export type CommentMaxAggregateOutputType = {
     id: string | null
     text: string | null
+<<<<<<< HEAD
     userId: string | null
+=======
+>>>>>>> 7ccb7c060030306b0811825e343bb22cb4f0491b
     reviewId: string | null
   }
 
   export type CommentCountAggregateOutputType = {
     id: number
     text: number
+<<<<<<< HEAD
     userId: number
+=======
+>>>>>>> 7ccb7c060030306b0811825e343bb22cb4f0491b
     reviewId: number
     _all: number
   }
@@ -4499,21 +4532,30 @@ export namespace Prisma {
   export type CommentMinAggregateInputType = {
     id?: true
     text?: true
+<<<<<<< HEAD
     userId?: true
+=======
+>>>>>>> 7ccb7c060030306b0811825e343bb22cb4f0491b
     reviewId?: true
   }
 
   export type CommentMaxAggregateInputType = {
     id?: true
     text?: true
+<<<<<<< HEAD
     userId?: true
+=======
+>>>>>>> 7ccb7c060030306b0811825e343bb22cb4f0491b
     reviewId?: true
   }
 
   export type CommentCountAggregateInputType = {
     id?: true
     text?: true
+<<<<<<< HEAD
     userId?: true
+=======
+>>>>>>> 7ccb7c060030306b0811825e343bb22cb4f0491b
     reviewId?: true
     _all?: true
   }
@@ -4593,7 +4635,10 @@ export namespace Prisma {
   export type CommentGroupByOutputType = {
     id: string
     text: string
+<<<<<<< HEAD
     userId: string
+=======
+>>>>>>> 7ccb7c060030306b0811825e343bb22cb4f0491b
     reviewId: string
     _count: CommentCountAggregateOutputType | null
     _min: CommentMinAggregateOutputType | null
@@ -4617,33 +4662,46 @@ export namespace Prisma {
   export type CommentSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     text?: boolean
+<<<<<<< HEAD
     userId?: boolean
     reviewId?: boolean
     user?: boolean | UserDefaultArgs<ExtArgs>
+=======
+    reviewId?: boolean
+>>>>>>> 7ccb7c060030306b0811825e343bb22cb4f0491b
     review?: boolean | ReviewDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["comment"]>
 
   export type CommentSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     text?: boolean
+<<<<<<< HEAD
     userId?: boolean
     reviewId?: boolean
     user?: boolean | UserDefaultArgs<ExtArgs>
+=======
+    reviewId?: boolean
+>>>>>>> 7ccb7c060030306b0811825e343bb22cb4f0491b
     review?: boolean | ReviewDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["comment"]>
 
   export type CommentSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     text?: boolean
+<<<<<<< HEAD
     userId?: boolean
     reviewId?: boolean
     user?: boolean | UserDefaultArgs<ExtArgs>
+=======
+    reviewId?: boolean
+>>>>>>> 7ccb7c060030306b0811825e343bb22cb4f0491b
     review?: boolean | ReviewDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["comment"]>
 
   export type CommentSelectScalar = {
     id?: boolean
     text?: boolean
+<<<<<<< HEAD
     userId?: boolean
     reviewId?: boolean
   }
@@ -4659,19 +4717,38 @@ export namespace Prisma {
   }
   export type CommentIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     user?: boolean | UserDefaultArgs<ExtArgs>
+=======
+    reviewId?: boolean
+  }
+
+  export type CommentOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "text" | "reviewId", ExtArgs["result"]["comment"]>
+  export type CommentInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    review?: boolean | ReviewDefaultArgs<ExtArgs>
+  }
+  export type CommentIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    review?: boolean | ReviewDefaultArgs<ExtArgs>
+  }
+  export type CommentIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+>>>>>>> 7ccb7c060030306b0811825e343bb22cb4f0491b
     review?: boolean | ReviewDefaultArgs<ExtArgs>
   }
 
   export type $CommentPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "Comment"
     objects: {
+<<<<<<< HEAD
       user: Prisma.$UserPayload<ExtArgs>
+=======
+>>>>>>> 7ccb7c060030306b0811825e343bb22cb4f0491b
       review: Prisma.$ReviewPayload<ExtArgs>
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
       text: string
+<<<<<<< HEAD
       userId: string
+=======
+>>>>>>> 7ccb7c060030306b0811825e343bb22cb4f0491b
       reviewId: string
     }, ExtArgs["result"]["comment"]>
     composites: {}
@@ -5067,7 +5144,10 @@ export namespace Prisma {
    */
   export interface Prisma__CommentClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
+<<<<<<< HEAD
     user<T extends UserDefaultArgs<ExtArgs> = {}>(args?: Subset<T, UserDefaultArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+=======
+>>>>>>> 7ccb7c060030306b0811825e343bb22cb4f0491b
     review<T extends ReviewDefaultArgs<ExtArgs> = {}>(args?: Subset<T, ReviewDefaultArgs<ExtArgs>>): Prisma__ReviewClient<$Result.GetResult<Prisma.$ReviewPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
@@ -5100,7 +5180,10 @@ export namespace Prisma {
   interface CommentFieldRefs {
     readonly id: FieldRef<"Comment", 'String'>
     readonly text: FieldRef<"Comment", 'String'>
+<<<<<<< HEAD
     readonly userId: FieldRef<"Comment", 'String'>
+=======
+>>>>>>> 7ccb7c060030306b0811825e343bb22cb4f0491b
     readonly reviewId: FieldRef<"Comment", 'String'>
   }
     
@@ -5560,7 +5643,10 @@ export namespace Prisma {
   export const CommentScalarFieldEnum: {
     id: 'id',
     text: 'text',
+<<<<<<< HEAD
     userId: 'userId',
+=======
+>>>>>>> 7ccb7c060030306b0811825e343bb22cb4f0491b
     reviewId: 'reviewId'
   };
 
@@ -5641,7 +5727,10 @@ export namespace Prisma {
     username?: StringFilter<"User"> | string
     password?: StringFilter<"User"> | string
     reviews?: ReviewListRelationFilter
+<<<<<<< HEAD
     comments?: CommentListRelationFilter
+=======
+>>>>>>> 7ccb7c060030306b0811825e343bb22cb4f0491b
   }
 
   export type UserOrderByWithRelationInput = {
@@ -5649,7 +5738,10 @@ export namespace Prisma {
     username?: SortOrder
     password?: SortOrder
     reviews?: ReviewOrderByRelationAggregateInput
+<<<<<<< HEAD
     comments?: CommentOrderByRelationAggregateInput
+=======
+>>>>>>> 7ccb7c060030306b0811825e343bb22cb4f0491b
   }
 
   export type UserWhereUniqueInput = Prisma.AtLeast<{
@@ -5660,8 +5752,12 @@ export namespace Prisma {
     NOT?: UserWhereInput | UserWhereInput[]
     password?: StringFilter<"User"> | string
     reviews?: ReviewListRelationFilter
+<<<<<<< HEAD
     comments?: CommentListRelationFilter
   }, "id" | "username">
+=======
+  }, "id">
+>>>>>>> 7ccb7c060030306b0811825e343bb22cb4f0491b
 
   export type UserOrderByWithAggregationInput = {
     id?: SortOrder
@@ -5785,18 +5881,26 @@ export namespace Prisma {
     NOT?: CommentWhereInput | CommentWhereInput[]
     id?: StringFilter<"Comment"> | string
     text?: StringFilter<"Comment"> | string
+<<<<<<< HEAD
     userId?: StringFilter<"Comment"> | string
     reviewId?: StringFilter<"Comment"> | string
     user?: XOR<UserScalarRelationFilter, UserWhereInput>
+=======
+    reviewId?: StringFilter<"Comment"> | string
+>>>>>>> 7ccb7c060030306b0811825e343bb22cb4f0491b
     review?: XOR<ReviewScalarRelationFilter, ReviewWhereInput>
   }
 
   export type CommentOrderByWithRelationInput = {
     id?: SortOrder
     text?: SortOrder
+<<<<<<< HEAD
     userId?: SortOrder
     reviewId?: SortOrder
     user?: UserOrderByWithRelationInput
+=======
+    reviewId?: SortOrder
+>>>>>>> 7ccb7c060030306b0811825e343bb22cb4f0491b
     review?: ReviewOrderByWithRelationInput
   }
 
@@ -5806,16 +5910,23 @@ export namespace Prisma {
     OR?: CommentWhereInput[]
     NOT?: CommentWhereInput | CommentWhereInput[]
     text?: StringFilter<"Comment"> | string
+<<<<<<< HEAD
     userId?: StringFilter<"Comment"> | string
     reviewId?: StringFilter<"Comment"> | string
     user?: XOR<UserScalarRelationFilter, UserWhereInput>
+=======
+    reviewId?: StringFilter<"Comment"> | string
+>>>>>>> 7ccb7c060030306b0811825e343bb22cb4f0491b
     review?: XOR<ReviewScalarRelationFilter, ReviewWhereInput>
   }, "id">
 
   export type CommentOrderByWithAggregationInput = {
     id?: SortOrder
     text?: SortOrder
+<<<<<<< HEAD
     userId?: SortOrder
+=======
+>>>>>>> 7ccb7c060030306b0811825e343bb22cb4f0491b
     reviewId?: SortOrder
     _count?: CommentCountOrderByAggregateInput
     _max?: CommentMaxOrderByAggregateInput
@@ -5828,7 +5939,10 @@ export namespace Prisma {
     NOT?: CommentScalarWhereWithAggregatesInput | CommentScalarWhereWithAggregatesInput[]
     id?: StringWithAggregatesFilter<"Comment"> | string
     text?: StringWithAggregatesFilter<"Comment"> | string
+<<<<<<< HEAD
     userId?: StringWithAggregatesFilter<"Comment"> | string
+=======
+>>>>>>> 7ccb7c060030306b0811825e343bb22cb4f0491b
     reviewId?: StringWithAggregatesFilter<"Comment"> | string
   }
 
@@ -5837,7 +5951,10 @@ export namespace Prisma {
     username: string
     password: string
     reviews?: ReviewCreateNestedManyWithoutUserInput
+<<<<<<< HEAD
     comments?: CommentCreateNestedManyWithoutUserInput
+=======
+>>>>>>> 7ccb7c060030306b0811825e343bb22cb4f0491b
   }
 
   export type UserUncheckedCreateInput = {
@@ -5845,7 +5962,10 @@ export namespace Prisma {
     username: string
     password: string
     reviews?: ReviewUncheckedCreateNestedManyWithoutUserInput
+<<<<<<< HEAD
     comments?: CommentUncheckedCreateNestedManyWithoutUserInput
+=======
+>>>>>>> 7ccb7c060030306b0811825e343bb22cb4f0491b
   }
 
   export type UserUpdateInput = {
@@ -5853,7 +5973,10 @@ export namespace Prisma {
     username?: StringFieldUpdateOperationsInput | string
     password?: StringFieldUpdateOperationsInput | string
     reviews?: ReviewUpdateManyWithoutUserNestedInput
+<<<<<<< HEAD
     comments?: CommentUpdateManyWithoutUserNestedInput
+=======
+>>>>>>> 7ccb7c060030306b0811825e343bb22cb4f0491b
   }
 
   export type UserUncheckedUpdateInput = {
@@ -5861,7 +5984,10 @@ export namespace Prisma {
     username?: StringFieldUpdateOperationsInput | string
     password?: StringFieldUpdateOperationsInput | string
     reviews?: ReviewUncheckedUpdateManyWithoutUserNestedInput
+<<<<<<< HEAD
     comments?: CommentUncheckedUpdateManyWithoutUserNestedInput
+=======
+>>>>>>> 7ccb7c060030306b0811825e343bb22cb4f0491b
   }
 
   export type UserCreateManyInput = {
@@ -5975,35 +6101,50 @@ export namespace Prisma {
   export type CommentCreateInput = {
     id?: string
     text: string
+<<<<<<< HEAD
     user: UserCreateNestedOneWithoutCommentsInput
+=======
+>>>>>>> 7ccb7c060030306b0811825e343bb22cb4f0491b
     review: ReviewCreateNestedOneWithoutCommentsInput
   }
 
   export type CommentUncheckedCreateInput = {
     id?: string
     text: string
+<<<<<<< HEAD
     userId: string
+=======
+>>>>>>> 7ccb7c060030306b0811825e343bb22cb4f0491b
     reviewId: string
   }
 
   export type CommentUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
     text?: StringFieldUpdateOperationsInput | string
+<<<<<<< HEAD
     user?: UserUpdateOneRequiredWithoutCommentsNestedInput
+=======
+>>>>>>> 7ccb7c060030306b0811825e343bb22cb4f0491b
     review?: ReviewUpdateOneRequiredWithoutCommentsNestedInput
   }
 
   export type CommentUncheckedUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
     text?: StringFieldUpdateOperationsInput | string
+<<<<<<< HEAD
     userId?: StringFieldUpdateOperationsInput | string
+=======
+>>>>>>> 7ccb7c060030306b0811825e343bb22cb4f0491b
     reviewId?: StringFieldUpdateOperationsInput | string
   }
 
   export type CommentCreateManyInput = {
     id?: string
     text: string
+<<<<<<< HEAD
     userId: string
+=======
+>>>>>>> 7ccb7c060030306b0811825e343bb22cb4f0491b
     reviewId: string
   }
 
@@ -6015,7 +6156,10 @@ export namespace Prisma {
   export type CommentUncheckedUpdateManyInput = {
     id?: StringFieldUpdateOperationsInput | string
     text?: StringFieldUpdateOperationsInput | string
+<<<<<<< HEAD
     userId?: StringFieldUpdateOperationsInput | string
+=======
+>>>>>>> 7ccb7c060030306b0811825e343bb22cb4f0491b
     reviewId?: StringFieldUpdateOperationsInput | string
   }
 
@@ -6040,20 +6184,26 @@ export namespace Prisma {
     none?: ReviewWhereInput
   }
 
+<<<<<<< HEAD
   export type CommentListRelationFilter = {
     every?: CommentWhereInput
     some?: CommentWhereInput
     none?: CommentWhereInput
   }
 
+=======
+>>>>>>> 7ccb7c060030306b0811825e343bb22cb4f0491b
   export type ReviewOrderByRelationAggregateInput = {
     _count?: SortOrder
   }
 
+<<<<<<< HEAD
   export type CommentOrderByRelationAggregateInput = {
     _count?: SortOrder
   }
 
+=======
+>>>>>>> 7ccb7c060030306b0811825e343bb22cb4f0491b
   export type UserCountOrderByAggregateInput = {
     id?: SortOrder
     username?: SortOrder
@@ -6126,6 +6276,19 @@ export namespace Prisma {
     isNot?: ItemWhereInput
   }
 
+<<<<<<< HEAD
+=======
+  export type CommentListRelationFilter = {
+    every?: CommentWhereInput
+    some?: CommentWhereInput
+    none?: CommentWhereInput
+  }
+
+  export type CommentOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+>>>>>>> 7ccb7c060030306b0811825e343bb22cb4f0491b
   export type ReviewCountOrderByAggregateInput = {
     id?: SortOrder
     rating?: SortOrder
@@ -6179,21 +6342,30 @@ export namespace Prisma {
   export type CommentCountOrderByAggregateInput = {
     id?: SortOrder
     text?: SortOrder
+<<<<<<< HEAD
     userId?: SortOrder
+=======
+>>>>>>> 7ccb7c060030306b0811825e343bb22cb4f0491b
     reviewId?: SortOrder
   }
 
   export type CommentMaxOrderByAggregateInput = {
     id?: SortOrder
     text?: SortOrder
+<<<<<<< HEAD
     userId?: SortOrder
+=======
+>>>>>>> 7ccb7c060030306b0811825e343bb22cb4f0491b
     reviewId?: SortOrder
   }
 
   export type CommentMinOrderByAggregateInput = {
     id?: SortOrder
     text?: SortOrder
+<<<<<<< HEAD
     userId?: SortOrder
+=======
+>>>>>>> 7ccb7c060030306b0811825e343bb22cb4f0491b
     reviewId?: SortOrder
   }
 
@@ -6204,6 +6376,7 @@ export namespace Prisma {
     connect?: ReviewWhereUniqueInput | ReviewWhereUniqueInput[]
   }
 
+<<<<<<< HEAD
   export type CommentCreateNestedManyWithoutUserInput = {
     create?: XOR<CommentCreateWithoutUserInput, CommentUncheckedCreateWithoutUserInput> | CommentCreateWithoutUserInput[] | CommentUncheckedCreateWithoutUserInput[]
     connectOrCreate?: CommentCreateOrConnectWithoutUserInput | CommentCreateOrConnectWithoutUserInput[]
@@ -6211,11 +6384,14 @@ export namespace Prisma {
     connect?: CommentWhereUniqueInput | CommentWhereUniqueInput[]
   }
 
+=======
+>>>>>>> 7ccb7c060030306b0811825e343bb22cb4f0491b
   export type ReviewUncheckedCreateNestedManyWithoutUserInput = {
     create?: XOR<ReviewCreateWithoutUserInput, ReviewUncheckedCreateWithoutUserInput> | ReviewCreateWithoutUserInput[] | ReviewUncheckedCreateWithoutUserInput[]
     connectOrCreate?: ReviewCreateOrConnectWithoutUserInput | ReviewCreateOrConnectWithoutUserInput[]
     createMany?: ReviewCreateManyUserInputEnvelope
     connect?: ReviewWhereUniqueInput | ReviewWhereUniqueInput[]
+<<<<<<< HEAD
   }
 
   export type CommentUncheckedCreateNestedManyWithoutUserInput = {
@@ -6223,6 +6399,8 @@ export namespace Prisma {
     connectOrCreate?: CommentCreateOrConnectWithoutUserInput | CommentCreateOrConnectWithoutUserInput[]
     createMany?: CommentCreateManyUserInputEnvelope
     connect?: CommentWhereUniqueInput | CommentWhereUniqueInput[]
+=======
+>>>>>>> 7ccb7c060030306b0811825e343bb22cb4f0491b
   }
 
   export type StringFieldUpdateOperationsInput = {
@@ -6243,6 +6421,7 @@ export namespace Prisma {
     deleteMany?: ReviewScalarWhereInput | ReviewScalarWhereInput[]
   }
 
+<<<<<<< HEAD
   export type CommentUpdateManyWithoutUserNestedInput = {
     create?: XOR<CommentCreateWithoutUserInput, CommentUncheckedCreateWithoutUserInput> | CommentCreateWithoutUserInput[] | CommentUncheckedCreateWithoutUserInput[]
     connectOrCreate?: CommentCreateOrConnectWithoutUserInput | CommentCreateOrConnectWithoutUserInput[]
@@ -6257,6 +6436,8 @@ export namespace Prisma {
     deleteMany?: CommentScalarWhereInput | CommentScalarWhereInput[]
   }
 
+=======
+>>>>>>> 7ccb7c060030306b0811825e343bb22cb4f0491b
   export type ReviewUncheckedUpdateManyWithoutUserNestedInput = {
     create?: XOR<ReviewCreateWithoutUserInput, ReviewUncheckedCreateWithoutUserInput> | ReviewCreateWithoutUserInput[] | ReviewUncheckedCreateWithoutUserInput[]
     connectOrCreate?: ReviewCreateOrConnectWithoutUserInput | ReviewCreateOrConnectWithoutUserInput[]
@@ -6271,6 +6452,7 @@ export namespace Prisma {
     deleteMany?: ReviewScalarWhereInput | ReviewScalarWhereInput[]
   }
 
+<<<<<<< HEAD
   export type CommentUncheckedUpdateManyWithoutUserNestedInput = {
     create?: XOR<CommentCreateWithoutUserInput, CommentUncheckedCreateWithoutUserInput> | CommentCreateWithoutUserInput[] | CommentUncheckedCreateWithoutUserInput[]
     connectOrCreate?: CommentCreateOrConnectWithoutUserInput | CommentCreateOrConnectWithoutUserInput[]
@@ -6285,6 +6467,8 @@ export namespace Prisma {
     deleteMany?: CommentScalarWhereInput | CommentScalarWhereInput[]
   }
 
+=======
+>>>>>>> 7ccb7c060030306b0811825e343bb22cb4f0491b
   export type ReviewCreateNestedManyWithoutItemInput = {
     create?: XOR<ReviewCreateWithoutItemInput, ReviewUncheckedCreateWithoutItemInput> | ReviewCreateWithoutItemInput[] | ReviewUncheckedCreateWithoutItemInput[]
     connectOrCreate?: ReviewCreateOrConnectWithoutItemInput | ReviewCreateOrConnectWithoutItemInput[]
@@ -6405,18 +6589,22 @@ export namespace Prisma {
     deleteMany?: CommentScalarWhereInput | CommentScalarWhereInput[]
   }
 
+<<<<<<< HEAD
   export type UserCreateNestedOneWithoutCommentsInput = {
     create?: XOR<UserCreateWithoutCommentsInput, UserUncheckedCreateWithoutCommentsInput>
     connectOrCreate?: UserCreateOrConnectWithoutCommentsInput
     connect?: UserWhereUniqueInput
   }
 
+=======
+>>>>>>> 7ccb7c060030306b0811825e343bb22cb4f0491b
   export type ReviewCreateNestedOneWithoutCommentsInput = {
     create?: XOR<ReviewCreateWithoutCommentsInput, ReviewUncheckedCreateWithoutCommentsInput>
     connectOrCreate?: ReviewCreateOrConnectWithoutCommentsInput
     connect?: ReviewWhereUniqueInput
   }
 
+<<<<<<< HEAD
   export type UserUpdateOneRequiredWithoutCommentsNestedInput = {
     create?: XOR<UserCreateWithoutCommentsInput, UserUncheckedCreateWithoutCommentsInput>
     connectOrCreate?: UserCreateOrConnectWithoutCommentsInput
@@ -6425,6 +6613,8 @@ export namespace Prisma {
     update?: XOR<XOR<UserUpdateToOneWithWhereWithoutCommentsInput, UserUpdateWithoutCommentsInput>, UserUncheckedUpdateWithoutCommentsInput>
   }
 
+=======
+>>>>>>> 7ccb7c060030306b0811825e343bb22cb4f0491b
   export type ReviewUpdateOneRequiredWithoutCommentsNestedInput = {
     create?: XOR<ReviewCreateWithoutCommentsInput, ReviewUncheckedCreateWithoutCommentsInput>
     connectOrCreate?: ReviewCreateOrConnectWithoutCommentsInput
@@ -6526,6 +6716,7 @@ export namespace Prisma {
     skipDuplicates?: boolean
   }
 
+<<<<<<< HEAD
   export type CommentCreateWithoutUserInput = {
     id?: string
     text: string
@@ -6548,6 +6739,8 @@ export namespace Prisma {
     skipDuplicates?: boolean
   }
 
+=======
+>>>>>>> 7ccb7c060030306b0811825e343bb22cb4f0491b
   export type ReviewUpsertWithWhereUniqueWithoutUserInput = {
     where: ReviewWhereUniqueInput
     update: XOR<ReviewUpdateWithoutUserInput, ReviewUncheckedUpdateWithoutUserInput>
@@ -6574,6 +6767,7 @@ export namespace Prisma {
     itemId?: StringFilter<"Review"> | string
   }
 
+<<<<<<< HEAD
   export type CommentUpsertWithWhereUniqueWithoutUserInput = {
     where: CommentWhereUniqueInput
     update: XOR<CommentUpdateWithoutUserInput, CommentUncheckedUpdateWithoutUserInput>
@@ -6600,6 +6794,8 @@ export namespace Prisma {
     reviewId?: StringFilter<"Comment"> | string
   }
 
+=======
+>>>>>>> 7ccb7c060030306b0811825e343bb22cb4f0491b
   export type ReviewCreateWithoutItemInput = {
     id?: string
     rating: number
@@ -6644,14 +6840,20 @@ export namespace Prisma {
     id?: string
     username: string
     password: string
+<<<<<<< HEAD
     comments?: CommentCreateNestedManyWithoutUserInput
+=======
+>>>>>>> 7ccb7c060030306b0811825e343bb22cb4f0491b
   }
 
   export type UserUncheckedCreateWithoutReviewsInput = {
     id?: string
     username: string
     password: string
+<<<<<<< HEAD
     comments?: CommentUncheckedCreateNestedManyWithoutUserInput
+=======
+>>>>>>> 7ccb7c060030306b0811825e343bb22cb4f0491b
   }
 
   export type UserCreateOrConnectWithoutReviewsInput = {
@@ -6677,13 +6879,19 @@ export namespace Prisma {
   export type CommentCreateWithoutReviewInput = {
     id?: string
     text: string
+<<<<<<< HEAD
     user: UserCreateNestedOneWithoutCommentsInput
+=======
+>>>>>>> 7ccb7c060030306b0811825e343bb22cb4f0491b
   }
 
   export type CommentUncheckedCreateWithoutReviewInput = {
     id?: string
     text: string
+<<<<<<< HEAD
     userId: string
+=======
+>>>>>>> 7ccb7c060030306b0811825e343bb22cb4f0491b
   }
 
   export type CommentCreateOrConnectWithoutReviewInput = {
@@ -6711,14 +6919,20 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     username?: StringFieldUpdateOperationsInput | string
     password?: StringFieldUpdateOperationsInput | string
+<<<<<<< HEAD
     comments?: CommentUpdateManyWithoutUserNestedInput
+=======
+>>>>>>> 7ccb7c060030306b0811825e343bb22cb4f0491b
   }
 
   export type UserUncheckedUpdateWithoutReviewsInput = {
     id?: StringFieldUpdateOperationsInput | string
     username?: StringFieldUpdateOperationsInput | string
     password?: StringFieldUpdateOperationsInput | string
+<<<<<<< HEAD
     comments?: CommentUncheckedUpdateManyWithoutUserNestedInput
+=======
+>>>>>>> 7ccb7c060030306b0811825e343bb22cb4f0491b
   }
 
   export type ItemUpsertWithoutReviewsInput = {
@@ -6758,6 +6972,7 @@ export namespace Prisma {
     data: XOR<CommentUpdateManyMutationInput, CommentUncheckedUpdateManyWithoutReviewInput>
   }
 
+<<<<<<< HEAD
   export type UserCreateWithoutCommentsInput = {
     id?: string
     username: string
@@ -6775,6 +6990,15 @@ export namespace Prisma {
   export type UserCreateOrConnectWithoutCommentsInput = {
     where: UserWhereUniqueInput
     create: XOR<UserCreateWithoutCommentsInput, UserUncheckedCreateWithoutCommentsInput>
+=======
+  export type CommentScalarWhereInput = {
+    AND?: CommentScalarWhereInput | CommentScalarWhereInput[]
+    OR?: CommentScalarWhereInput[]
+    NOT?: CommentScalarWhereInput | CommentScalarWhereInput[]
+    id?: StringFilter<"Comment"> | string
+    text?: StringFilter<"Comment"> | string
+    reviewId?: StringFilter<"Comment"> | string
+>>>>>>> 7ccb7c060030306b0811825e343bb22cb4f0491b
   }
 
   export type ReviewCreateWithoutCommentsInput = {
@@ -6796,6 +7020,7 @@ export namespace Prisma {
     create: XOR<ReviewCreateWithoutCommentsInput, ReviewUncheckedCreateWithoutCommentsInput>
   }
 
+<<<<<<< HEAD
   export type UserUpsertWithoutCommentsInput = {
     update: XOR<UserUpdateWithoutCommentsInput, UserUncheckedUpdateWithoutCommentsInput>
     create: XOR<UserCreateWithoutCommentsInput, UserUncheckedCreateWithoutCommentsInput>
@@ -6821,6 +7046,8 @@ export namespace Prisma {
     reviews?: ReviewUncheckedUpdateManyWithoutUserNestedInput
   }
 
+=======
+>>>>>>> 7ccb7c060030306b0811825e343bb22cb4f0491b
   export type ReviewUpsertWithoutCommentsInput = {
     update: XOR<ReviewUpdateWithoutCommentsInput, ReviewUncheckedUpdateWithoutCommentsInput>
     create: XOR<ReviewCreateWithoutCommentsInput, ReviewUncheckedCreateWithoutCommentsInput>
@@ -6852,12 +7079,15 @@ export namespace Prisma {
     itemId: string
   }
 
+<<<<<<< HEAD
   export type CommentCreateManyUserInput = {
     id?: string
     text: string
     reviewId: string
   }
 
+=======
+>>>>>>> 7ccb7c060030306b0811825e343bb22cb4f0491b
   export type ReviewUpdateWithoutUserInput = {
     id?: StringFieldUpdateOperationsInput | string
     rating?: IntFieldUpdateOperationsInput | number
@@ -6878,6 +7108,7 @@ export namespace Prisma {
     itemId?: StringFieldUpdateOperationsInput | string
   }
 
+<<<<<<< HEAD
   export type CommentUpdateWithoutUserInput = {
     id?: StringFieldUpdateOperationsInput | string
     text?: StringFieldUpdateOperationsInput | string
@@ -6896,6 +7127,8 @@ export namespace Prisma {
     reviewId?: StringFieldUpdateOperationsInput | string
   }
 
+=======
+>>>>>>> 7ccb7c060030306b0811825e343bb22cb4f0491b
   export type ReviewCreateManyItemInput = {
     id?: string
     rating: number
@@ -6925,25 +7158,37 @@ export namespace Prisma {
   export type CommentCreateManyReviewInput = {
     id?: string
     text: string
+<<<<<<< HEAD
     userId: string
+=======
+>>>>>>> 7ccb7c060030306b0811825e343bb22cb4f0491b
   }
 
   export type CommentUpdateWithoutReviewInput = {
     id?: StringFieldUpdateOperationsInput | string
     text?: StringFieldUpdateOperationsInput | string
+<<<<<<< HEAD
     user?: UserUpdateOneRequiredWithoutCommentsNestedInput
+=======
+>>>>>>> 7ccb7c060030306b0811825e343bb22cb4f0491b
   }
 
   export type CommentUncheckedUpdateWithoutReviewInput = {
     id?: StringFieldUpdateOperationsInput | string
     text?: StringFieldUpdateOperationsInput | string
+<<<<<<< HEAD
     userId?: StringFieldUpdateOperationsInput | string
+=======
+>>>>>>> 7ccb7c060030306b0811825e343bb22cb4f0491b
   }
 
   export type CommentUncheckedUpdateManyWithoutReviewInput = {
     id?: StringFieldUpdateOperationsInput | string
     text?: StringFieldUpdateOperationsInput | string
+<<<<<<< HEAD
     userId?: StringFieldUpdateOperationsInput | string
+=======
+>>>>>>> 7ccb7c060030306b0811825e343bb22cb4f0491b
   }
 
 

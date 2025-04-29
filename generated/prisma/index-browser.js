@@ -138,7 +138,10 @@ exports.Prisma.ReviewScalarFieldEnum = {
 exports.Prisma.CommentScalarFieldEnum = {
   id: 'id',
   text: 'text',
+<<<<<<< HEAD
   userId: 'userId',
+=======
+>>>>>>> 7ccb7c060030306b0811825e343bb22cb4f0491b
   reviewId: 'reviewId'
 };
 

@@ -1,5 +1,7 @@
-const bcrypt = require("bcrypt");
 const { prisma } = require("./src/common/common.js");
+const bcrypt = require("bcrypt");
+const jwt = require("jsonwebtoken"); // Importing the required modules
+const WEB_TOKEN = process.env.JWT_SECRET || "1234"; // Importing the web token from environment variables
 
 async function main() {
   try {
