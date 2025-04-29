@@ -32,7 +32,7 @@ const getSandwichReview = async (req, res) => {
 // Post (create) a new sandwich review
 const createSandwichReview = async (req, res) => {
   const { itemId } = req.params;
-  const { rating, userId } = req.body;
+  const { rating, text, userId } = req.body;
   try {
     const token = req.headers.authorization?.replace("Bearer ", "");
     if (!token)
@@ -49,16 +49,37 @@ const createSandwichReview = async (req, res) => {
     if (authenticateUserId !== userId) {
       return res.status(403).json({ message: "You shall not pass" });
     }
+    const existingReview = await prisma.review.findFirst({
+      where: { userId: authenticateUserId, itemId: itemId },
+    });
+
+    if (existingReview) {
+      return res.status(400).json({
+        error:
+          "User already has submitted a review for this sandwich. To change it, please use the update function instead.",
+      });
+    }
 
     const newReview = await prisma.review.create({
       data: {
         rating,
-        userId,
+        text,
+        userId: authenticateUserId,
         itemId,
       },
     });
 
-    res.status(201).json(newReview);
+    //average prisma method
+    const averageRating = await prisma.review.aggregate({
+      where: {
+        itemId: itemId,
+      },
+      _avg: {
+        rating: true,
+      },
+    });
+
+    res.status(201).json(newReview, averageRating);
   } catch (error) {
     console.error("Error creating review:", error);
     res.status(500).json({ message: "Server error while creating review." });

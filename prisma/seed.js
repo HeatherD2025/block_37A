@@ -44,22 +44,56 @@ async function main() {
       },
     });
 
-    const user = await prisma.user.create({
+    const user1 = await prisma.user.create({
       data: {
         username: "Test1",
         password: hashedPassword,
       },
     });
-    const token = jwt.sign(
-      { id: user.id, username: user.username },
+    const token1 = jwt.sign(
+      { id: user1.id, username: user1.username },
       WEB_TOKEN,
       {
         expiresIn: "7d",
       }
     );
 
-    console.log("Generated JWT token for seeded user:");
-    console.log(token);
+    const user2 = await prisma.user.create({
+      data: {
+        username: "Test2",
+        password: hashedPassword,
+      },
+    });
+    const token2 = jwt.sign(
+      { id: user2.id, username: user2.username },
+      WEB_TOKEN,
+      {
+        expiresIn: "7d",
+      }
+    );
+
+    const user3 = await prisma.user.create({
+      data: {
+        username: "Test3",
+        password: hashedPassword,
+      },
+    });
+    const token3 = jwt.sign(
+      { id: user3.id, username: user3.username },
+      WEB_TOKEN,
+      {
+        expiresIn: "7d",
+      }
+    );
+
+    console.log("Generated JWT token for seeded user1:");
+    console.log(token1);
+
+    console.log("Generated JWT token for seeded user2:");
+    console.log(token2);
+
+    console.log("Generated JWT token for seeded user3:");
+    console.log(token3);
 
     console.log("seeding completed");
   } catch (error) {
