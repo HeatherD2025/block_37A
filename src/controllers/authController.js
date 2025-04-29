@@ -1,69 +1,97 @@
 const { router, bcrypt, prisma, jwt } = require("../common/common");
 require("dotenv").config();
 
-// const login = async (req, res) => {
-//   const { username, password } = req.body;
-//   const user = await prisma.user.findFirst({
-//     where: {
-//       username,
-//     },
-//   });
-//   const match = await bcrypt.compare(password, user?.password);
-//   if (match) {
-//     const token = jwt.sign(
-//       user.id,
-//       process.env.WEB_TOKEN,
-//     );
-//     const obj = {
-//       user,
-//       token,
-//     };
-//     res.send(obj);
-//   } else {
-//     res.send("Something didn't work");
-//   }
-// };
+const getMe = async (req, res) => {
+  try {
+    const tokenWithBearer = req.headers.authorization || "";
+    const token = tokenWithBearer.split(" ")[1];
+    console.log(token);
+    if (!token) {
+      return res.status(401).json({
+        statusCode: 401,
+        message: "Authentication required",
+      });
+    }
+
+    const loggedIn = jwt.verify(token, process.env.WEB_TOKEN);
+    const user = await prisma.user.findUnique({
+      where: { id: loggedIn.id },
+    });
+
+    if (!user) {
+      return res.status(404).json({
+        statusCode: 404,
+        message: "User not found",
+      });
+    }
+
+    const { password: _, ...userWithoutPassword } = user;
+
+    res.status(200).json({
+      user: userWithoutPassword,
+    });
+  } catch (error) {
+    console.error(error);
+    res.status(401).json({
+      message: "invalid token",
+    });
+  }
+};
+
 const login = async (req, res) => {
   const { username, password } = req.body;
-  
+
+  console.log("username", username); // Log the username
+  console.log("password", password); // Log the password
+
   try {
     const user = await prisma.user.findFirst({
       where: { username },
     });
 
+    console.log("User from DB", user); // Log the user object
+
     if (!user) {
-      return res.status(404).json({ 
-        statusCode: 404, 
-        message: "User not found" 
+      console.log("User not found"); // Log if user is not found
+      return res.status(404).json({
+        statusCode: 404,
+        message: "User not found",
       });
     }
 
     const isPasswordValid = await bcrypt.compare(password, user.password);
 
+    console.log("isPasswordValid", isPasswordValid); // Log the password validation result
+
     if (!isPasswordValid) {
-      return res.status(401).json({ 
-        statusCode: 401, 
-        message: "Login denied" 
+      console.log("Invalid password"); // Log if password is invalid
+      return res.status(401).json({
+        statusCode: 401,
+        message: "Login denied",
       });
     }
 
+    console.log("Creating JWT token with secret:", process.env.WEB_TOKEN); // Log the secret used for JWT
+    
     const token = jwt.sign(
       { id: user.id, username: user.username },
-      process.env.WEB_TOKEN,
+      process.env.WEB_TOKEN
     );
+
+    console.log("Token created successfully");
 
     // Remove password from response
     const { password: _, ...userWithoutPassword } = user;
 
     res.status(200).json({
       user: userWithoutPassword,
-      token
+      token,
     });
   } catch (error) {
     console.error(error);
-    res.status(500).json({ 
-      statusCode: 500, 
-      message: "Server error" 
+    res.status(500).json({
+      statusCode: 500,
+      message: "Server error",
     });
   }
 };
@@ -80,8 +108,11 @@ const register = async (req, res) => {
   });
   if (registerUser) {
     const token = jwt.sign(
-      registerUser.id,
-      process.env.WEB_TOKEN,
+      {
+        id: registerUser.id,
+        username: registerUser.username,
+      },
+      process.env.WEB_TOKEN
     );
     const obj = {
       registerUser,
@@ -93,18 +124,8 @@ const register = async (req, res) => {
   }
 };
 
-const userGet = async (req, res) => {
-  const id = Number(req.params.id);
-  const user = await prisma.user.findFirst({
-    where: {
-      id,
-    },
-  });
-  res.send(user);
-};
-
 module.exports = {
   login,
   register,
-  userGet,
+  getMe,
 };
