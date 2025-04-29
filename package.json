@@ -19,6 +19,9 @@
   },
   "homepage": "https://github.com/HeatherD2025/block_37A#readme",
   "description": "",
+  "prisma": {
+    "seed": "node seed.js"
+  },
   "devDependencies": {
     "@types/node": "^22.15.0",
     "prisma": "^6.6.0",
