@@ -125,9 +125,21 @@ exports.Prisma.UserScalarFieldEnum = {
 
 exports.Prisma.ItemScalarFieldEnum = {
   id: 'id',
-  name: 'name',
-  review: 'review',
-  comment: 'comment'
+  name: 'name'
+};
+
+exports.Prisma.ReviewScalarFieldEnum = {
+  id: 'id',
+  rating: 'rating',
+  userId: 'userId',
+  itemId: 'itemId'
+};
+
+exports.Prisma.CommentScalarFieldEnum = {
+  id: 'id',
+  text: 'text',
+  userId: 'userId',
+  reviewId: 'reviewId'
 };
 
 exports.Prisma.SortOrder = {
@@ -140,15 +152,12 @@ exports.Prisma.QueryMode = {
   insensitive: 'insensitive'
 };
 
-exports.Prisma.NullsOrder = {
-  first: 'first',
-  last: 'last'
-};
-
 
 exports.Prisma.ModelName = {
   User: 'User',
-  Item: 'Item'
+  Item: 'Item',
+  Review: 'Review',
+  Comment: 'Comment'
 };
 
 /**
