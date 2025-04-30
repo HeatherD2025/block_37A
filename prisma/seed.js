@@ -1,71 +1,57 @@
-const { prisma } = require("../src/common/common.js");
+const { prisma } = require("../src/common/common");
 const bcrypt = require("bcrypt");
-const jwt = require("jsonwebtoken");
-
-const WEB_TOKEN = process.env.JWT_SECRET || "1234";
+const jwt = require("jsonwebtoken"); // Importing the required modules
+const WEB_TOKEN = process.env.JWT_SECRET || "1234"; // Importing the web token from environment variables
 
 async function main() {
   try {
+    // Create users
+    console.log("seeding started"); // Start seeding process
+
+    const saltRounds = 10; // Define the number of salt rounds for hashing
+    const hashedPassword1 = await bcrypt.hash("password1", saltRounds); // Hash password for user1
+    const hashedPassword2 = await bcrypt.hash("password2", saltRounds); // Hash password for user2
     const hashedPassword = await bcrypt.hash("password", 10);
-    await prisma.item.create({
-      data: {
-        name: "Grilled Cheese",
-      },
-    });
-
-    await prisma.item.create({
-      data: {
-        name: "Ham & Cheese",
-      },
-    });
-
-    await prisma.item.create({
-      data: {
-        name: "Meatball Sub",
-      },
-    });
-
-    await prisma.item.create({
-      data: {
-        name: "Philly Cheesesteak",
-      },
-    });
-
-    await prisma.item.create({
-      data: {
-        name: "Veggie",
-      },
-    });
-
-    await prisma.user.create({
-      data: {
-        username: "Tor",
-        password: "Skaarva",
-      },
-    });
 
     const user1 = await prisma.user.create({
       data: {
-        username: "Test1",
+        username: "testuser1",
+        password: hashedPassword1,
+      },
+    });
+    console.log("seeding user1"); // Create user1
+
+    const user2 = await prisma.user.create({
+      data: {
+        username: "testuser2",
+        password: hashedPassword2,
+      },
+    });
+    console.log("seeding user2"); // Create user2
+
+    //Seeds for users dependant on review methods and not using isLoggedIn
+    const user5 = await prisma.user.create({
+      data: {
+        username: "Test5",
         password: hashedPassword,
       },
     });
     const token1 = jwt.sign(
-      { id: user1.id, username: user1.username },
+      { id: user5.id, username: user5.username },
       WEB_TOKEN,
       {
         expiresIn: "7d",
       }
     );
 
-    const user2 = await prisma.user.create({
+    const user4 = await prisma.user.create({
       data: {
-        username: "Test2",
+        username: "Test4",
         password: hashedPassword,
       },
     });
     const token2 = jwt.sign(
-      { id: user2.id, username: user2.username },
+      { id: user4.id, username: user4.username },
       WEB_TOKEN,
       {
         expiresIn: "7d",
@@ -86,22 +72,102 @@ async function main() {
       }
     );
 
-    console.log("Generated JWT token for seeded user1:");
+    console.log("Generated JWT token for seeded user5:");
     console.log(token1);
 
-    console.log("Generated JWT token for seeded user2:");
+    console.log("Generated JWT token for seeded user4:");
     console.log(token2);
 
     console.log("Generated JWT token for seeded user3:");
     console.log(token3);
 
-    console.log("seeding completed");
+    // Create items
+    const item1 = await prisma.item.create({
+      data: {
+        name: "Grilled Cheese",
+      },
+    });
+
+    const item2 = await prisma.item.create({
+      data: {
+        name: "Ham & Cheese",
+      },
+    });
+
+    const item3 = await prisma.item.create({
+      data: {
+        name: "Meatball Sub",
+      },
+    });
+
+    const item4 = await prisma.item.create({
+      data: {
+        name: "Philly Cheesesteak",
+      },
+    });
+
+    const item5 = await prisma.item.create({
+      data: {
+        name: "Veggie",
+      },
+    });
+
+    console.log("Items created"); // Create items
+
+    // Create reviews
+    const review1 = await prisma.review.create({
+      data: {
+        rating: 5,
+        user: { connect: { id: user1.id } },
+        item: { connect: { id: item1.id } },
+      },
+    });
+
+    const review2 = await prisma.review.create({
+      data: {
+        rating: 3,
+        user: { connect: { id: user2.id } },
+        item: { connect: { id: item3.id } },
+      },
+    });
+
+    const review3 = await prisma.review.create({
+      data: {
+        rating: 1,
+        user: { connect: { id: user2.id } },
+        item: { connect: { id: item5.id } },
+      },
+    });
+
+    console.log("Reviews created"); // Create reviews
+
+    // Create comments
+    await prisma.comment.create({
+      data: {
+        text: "Great sandwich!",
+        user: { connect: { id: user1.id } },
+        review: { connect: { id: review1.id } },
+      },
+    });
+
+    await prisma.comment.create({
+      data: {
+        text: "What am I, a rabbit?",
+        user: { connect: { id: user2.id } },
+        review: { connect: { id: review3.id } },
+      },
+    });
+
+    console.log("Comments created"); // Create comments
+    console.log("Seeding completed!");
   } catch (error) {
-    console.error(error);
+    console.error("Seeding failed:", error);
     throw error;
   }
 }
 
+// Call the main function to seed the database
+// and handle any errors that occur
 main()
   .catch((er) => {
     console.error(er);
@@ -111,4 +177,4 @@ main()
     await prisma.$disconnect();
   });
 
-module.exports = main;
+module.exports = main; // Export the main function to be used in other parts of the application

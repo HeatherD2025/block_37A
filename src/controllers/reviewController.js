@@ -39,7 +39,7 @@ const createSandwichReview = async (req, res) => {
       return res.status(401).json({ message: "Authorization token required" });
 
     const decoded = jwt.verify(token, SECRET);
-    const authenticateUserId = decoded.id;
+    const authenticatedUserId = decoded.id;
 
     const item = await prisma.item.findUnique({
       where: { id: itemId },
@@ -51,7 +51,7 @@ const createSandwichReview = async (req, res) => {
     // }
 
     const existingReview = await prisma.review.findFirst({
-      where: { userId: authenticateUserId, itemId: itemId },
+      where: { userId: authenticatedUserId, itemId: itemId },
     });
 
     if (existingReview) {
@@ -64,14 +64,25 @@ const createSandwichReview = async (req, res) => {
     const newReview = await prisma.review.create({
       data: {
         rating,
-        userId: authenticateUserId,
+        userId: authenticatedUserId,
         itemId,
-        comments: {
-          create: [{ text }],
-        },
-        include: {
-          comments: true,
-        },
+        comments: text
+          ? {
+              create: [
+                {
+                  text,
+                  user: {
+                    connect: { id: authenticatedUserId },
+                  },
+                },
+              ],
+            }
+          : undefined,
+      },
+      include: {
+        comments: true,
+        item: true,
+        user: true,
       },
     });
 
@@ -155,7 +166,14 @@ const updateSandwichReview = async (req, res, next) => {
         rating,
         comments: comments
           ? {
-              create: [{ text: comments }],
+              create: [
+                {
+                  text: comments,
+                  user: {
+                    connect: { id: authenticatedUserId },
+                  },
+                },
+              ],
             }
           : undefined,
       },
