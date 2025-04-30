@@ -16,6 +16,9 @@ const itemRoutes = require("./src/routes/items");
 // Backend routes
 app.use("/api/items", itemRoutes); 
 
+const reviewRoutes = require("./src/routes/reviews");
+app.use("/api", reviewRoutes);
+
 const commentRoutes = require("./src/routes/comments");
 // Backend routes
 app.use("/api", commentRoutes); 

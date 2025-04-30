@@ -30,6 +30,7 @@ model Item {
 model Review {
   id        String    @id @default(uuid())
   rating    Int       
+  text      String    @db.VarChar(255)
   userId    String
   user      User      @relation(fields: [userId], references: [id])
   itemId    String
