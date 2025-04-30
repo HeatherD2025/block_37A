@@ -1,4 +1,4 @@
-# Fullstack Reviews App
+# Fullstack Career Simulation App
 
 ## Prisma Schema
 
