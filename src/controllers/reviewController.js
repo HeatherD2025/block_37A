@@ -22,7 +22,9 @@ const getSandwichReview = async (req, res) => {
         message: "The sandwich review you're looking for doesn't exist.",
       });
     }
-    res.json(review);
+    // Return the review with user and item details
+    return res.status(200).json(review);
+    
   } catch (error) {
     console.error("Error fetching review:", error);
     res.status(500).json({ message: "Server error fetching review." });
